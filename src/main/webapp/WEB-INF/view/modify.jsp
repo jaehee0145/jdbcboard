@@ -28,7 +28,7 @@
         <h2>글쓰기</h2>
 
         <div class="form-group">
-            <input type="hidden" name="id" value="${id}" />
+            <input type="hidden" name="id" id = "id" value="${id}" />
             <label for="writer">Name:</label>
             <input type="text" class="form-control" id="writer" value="${board.writer}" readonly>
         </div>

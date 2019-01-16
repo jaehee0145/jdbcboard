@@ -2,6 +2,8 @@ package my.examples.jdbcboard.servlet;
 
 import my.examples.jdbcboard.dao.BoardDao;
 import my.examples.jdbcboard.dao.BoardDaoImpl;
+import my.examples.jdbcboard.service.BoardService;
+import my.examples.jdbcboard.service.BoardServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +24,8 @@ public class DeleteServlet extends HttpServlet {
         }catch(Exception ex){
             // id가 잘못되었을 경우엔 에러페이지로 이동.
         }
-        BoardDao boardDao = new BoardDaoImpl();
-        boardDao.deleteBoard(id);
+        BoardService boardService = new BoardServiceImpl();
+        boardService.deleteBoard(id);
 
         resp.sendRedirect("/board/list");
     }

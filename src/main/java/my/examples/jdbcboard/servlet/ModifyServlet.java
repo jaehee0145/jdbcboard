@@ -3,6 +3,8 @@ package my.examples.jdbcboard.servlet;
 import my.examples.jdbcboard.dao.BoardDao;
 import my.examples.jdbcboard.dao.BoardDaoImpl;
 import my.examples.jdbcboard.dto.Board;
+import my.examples.jdbcboard.service.BoardService;
+import my.examples.jdbcboard.service.BoardServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,8 +28,9 @@ public class ModifyServlet extends HttpServlet {
         } catch (Exception ex) {
             return;
         }
-        BoardDao boardDao = new BoardDaoImpl();
-        Board board = boardDao.getBoard(id);
+
+        BoardService boardService = new BoardServiceImpl();
+        Board board = boardService.getBoard(id);
         if (board == null) {
             return;
         }
@@ -41,13 +44,7 @@ public class ModifyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-//
-//        String writer = req.getParameter("writer");
-//        String title = req.getParameter("title");
-//        String content = req.getParameter("content");
-//
-//        BoardDao boardDao = new BoardDaoImpl();
-//        Board board = new Board(title, content, writer);
+
         Long id = 0L;
         String title = null;
         String content = null;
@@ -56,15 +53,13 @@ public class ModifyServlet extends HttpServlet {
             title = req.getParameter("title");
             content = req.getParameter("content");
 
-//            System.out.println(idStr);
-//            System.out.println(title);
-//            System.out.println(content);
             id = Long.parseLong(idStr);
 
         } catch (Exception ex) {
         }
-        BoardDao boardDao = new BoardDaoImpl();
-        boardDao.modifyBoard(id, title, content);
+
+        BoardService boardService = new BoardServiceImpl();
+        boardService.modifyBoard(id, title, content);
         resp.sendRedirect("/board/list");
     }
 

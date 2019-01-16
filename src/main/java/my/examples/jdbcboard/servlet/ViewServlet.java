@@ -3,6 +3,8 @@ package my.examples.jdbcboard.servlet;
 import my.examples.jdbcboard.dao.BoardDao;
 import my.examples.jdbcboard.dao.BoardDaoImpl;
 import my.examples.jdbcboard.dto.Board;
+import my.examples.jdbcboard.service.BoardService;
+import my.examples.jdbcboard.service.BoardServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,18 +28,13 @@ public class ViewServlet extends HttpServlet {
         } catch (Exception ex) {
             return;
         }
-        BoardDao boardDao = new BoardDaoImpl();
-        Board board = boardDao.getBoard(id);
-        if(board == null){
-            return;
-        }
 
-        boardDao.updateReadCount(id);
+        BoardService boardService = new BoardServiceImpl();
+        Board board = boardService.getBoard(id);
+
         req.setAttribute("board", board);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/view.jsp");
         requestDispatcher.forward(req, resp);
-
-
     }
 }
