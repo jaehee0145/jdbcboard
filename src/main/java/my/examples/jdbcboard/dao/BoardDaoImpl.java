@@ -23,7 +23,6 @@ public class BoardDaoImpl implements BoardDao {
         try {
             //a. DB연결 - connection
             //    DB연결을 하려면 필요한 정보가 있다. Driver classname, DB URL, DB UserId , DB User Password
-
             //b. select SQL 준비
             try (PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.SELECT_BY_ID);) {
 
@@ -32,7 +31,6 @@ public class BoardDaoImpl implements BoardDao {
 
                 // d. SQL 실행
                 try (ResultSet rs = ps.executeQuery();) {
-
                     if (rs.next()) {
                         long id = rs.getLong(1);
                         String title = rs.getString(2);
