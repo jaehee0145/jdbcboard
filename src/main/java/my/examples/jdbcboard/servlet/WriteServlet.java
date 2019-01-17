@@ -28,11 +28,11 @@ public class WriteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         req.setCharacterEncoding("UTF-8");
 
-        String writer = req.getParameter("writer");
+        String nickname = req.getParameter("nickname");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
-        Board board = new Board(title, content, writer);
+        Board board = new Board(title, content, nickname);
         BoardService boardService = new BoardServiceImpl();
 
         boardService.addBoard(board);

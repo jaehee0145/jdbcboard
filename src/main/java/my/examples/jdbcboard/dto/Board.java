@@ -6,8 +6,9 @@ public class Board {
 
     private Long id;
     private String title;
+    private Long userId;
     private String content;
-    private String writer;
+    private String nickname;
     private Date regdate;
     private int readCount;
 
@@ -16,15 +17,15 @@ public class Board {
         this.readCount = 0;
     }
 
-    public Board(String title, String content, String writer) {
+    public Board(String title, String content, String nickname) {
         this();
         this.title = title;
         this.content = content;
-        this.writer = writer;
+        this.nickname = nickname;
     }
 
-    public Board(Long id, String title, String content, String writer, Date regdate, int readCount) {
-        this(title, content, writer);
+    public Board(Long id, String title, String content, String nickname, Date regdate, int readCount) {
+        this(title, content, nickname);
         this.id = id;
         this.regdate = regdate;
         this.readCount = readCount;
@@ -54,12 +55,12 @@ public class Board {
         this.content = content;
     }
 
-    public String getWriter() {
-        return writer;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setNickname(String writer) {
+        this.nickname = writer;
     }
 
     public Date getRegdate() {
@@ -84,7 +85,7 @@ public class Board {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", writer='" + writer + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", regdate=" + regdate +
                 ", readCount=" + readCount +
                 '}';

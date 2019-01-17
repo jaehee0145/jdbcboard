@@ -18,7 +18,7 @@ public class BoardDaoImpl implements BoardDao {
     public Board getBoard(Long idParam) {
         Board board = null;
 
-        Connection conn = null;
+        Connection conn = ConnectionContextHolder.getConnection();
         ConnectionContextHolder.getConnection();
         try {
             //a. DB연결 - connection
@@ -35,11 +35,11 @@ public class BoardDaoImpl implements BoardDao {
                         long id = rs.getLong(1);
                         String title = rs.getString(2);
                         String content = rs.getString(3);
-                        String writer = rs.getString(4);
+                        String nickname = rs.getString(4);
                         Date regdate = rs.getDate(5);
                         int readCount = rs.getInt(6);
 
-                        board = new Board(id, title, content, writer, regdate, readCount);
+                        board = new Board(id, title, content, nickname, regdate, readCount);
                     }
                 }
             }
@@ -77,11 +77,11 @@ public class BoardDaoImpl implements BoardDao {
                         long id = rs.getLong(1);
                         String title = rs.getString(2);
                         String content = rs.getString(3);
-                        String writer = rs.getString(4);
+                        String nickname = rs.getString(4);
                         Date regdate = rs.getDate(5);
                         int readCount = rs.getInt(6);
 
-                        Board board = new Board(id, title, content, writer, regdate, readCount);
+                        Board board = new Board(id, title, content, nickname, regdate, readCount);
                         list.add(board);
                     }
                 }
@@ -99,7 +99,7 @@ public class BoardDaoImpl implements BoardDao {
             conn = ConnectionContextHolder.getConnection();
             try (PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.INSERT);) {
                 ps.setString(1, board.getTitle());
-                ps.setString(2, board.getWriter());
+                ps.setString(2, board.getNickname());
                 ps.setString(3, board.getContent());
                 ps.executeUpdate(); // 입력,수정,삭제 건수 가 리턴된다.}
             }
@@ -127,7 +127,7 @@ public class BoardDaoImpl implements BoardDao {
     public void modifyBoard(Long id, String title, String content) {
         try {
             Connection conn = ConnectionContextHolder.getConnection();
-            try (PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.UPDATE);) {
+            try (PreparedStatement ps = conn.prepareStatement(BoardDaoSQL.MODIFY);) {
                 ps.setString(1, title);
                 ps.setString(2, content);
                 ps.setLong(3, id);
