@@ -7,14 +7,14 @@ public class User {
     private String name;
     private String nickname;
     private String email;
-    private String password;
+    private String passwd;
     private Date regdate;
 
     public User(String name, String nickname, String email, String password) {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
-        this.password = password;
+        this.passwd = password;
     }
 
     public Long getId() {
@@ -49,12 +49,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswd() {
+        return passwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
     public Date getRegdate() {
