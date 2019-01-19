@@ -8,10 +8,13 @@ import my.examples.jdbcboard.util.DBUtil;
 
 import java.sql.Connection;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private static UserService instance = new UserServiceImpl();
-    private UserServiceImpl(){}
-    public static UserService getInstance(){
+
+    private UserServiceImpl() {
+    }
+
+    public static UserService getInstance() {
         return instance;
     }
 
@@ -24,12 +27,25 @@ public class UserServiceImpl implements UserService{
             ConnectionContextHolder.setConnection(conn);
             userDao.addUser(user);
             conn.commit(); // 트랜젝션 commit
-        }catch(Exception ex){
+        } catch (Exception ex) {
             DBUtil.rollback(conn);
             ex.printStackTrace();
-        }finally {
+        } finally {
             DBUtil.close(conn);
         }
+    }
 
+    @Override
+    public User getUserByEmail(String email) {
+        User user = null;
+        UserDao userDao = UserDaoImpl.getInstance();
+        try (Connection conn = DBUtil.getInstance().getConnection();) {
+            ConnectionContextHolder.setConnection(conn);
+            user = userDao.getPasswdByEmail(email);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return user;
     }
 }
+

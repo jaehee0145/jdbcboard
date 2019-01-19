@@ -5,27 +5,31 @@ import java.util.Date;
 public class Board {
 
     private Long id;
-    private String title;
     private Long userId;
-    private String content;
     private String nickname;
+    private String title;
+    private String content;
+    private String name;
     private Date regdate;
     private int readCount;
+    private int groupNo;
+    private int groupSeq;
+    private int groupDepth;
 
     public Board() {
         this.regdate = new Date();
         this.readCount = 0;
     }
 
-    public Board(String title, String content, String nickname) {
+    public Board(String title, String content, String name) {
         this();
         this.title = title;
         this.content = content;
-        this.nickname = nickname;
+        this.name = name;
     }
 
-    public Board(Long id, String title, String content, String nickname, Date regdate, int readCount) {
-        this(title, content, nickname);
+    public Board(Long id, String title, String content, String name, Date regdate, int readCount) {
+        this(title, content, name);
         this.id = id;
         this.regdate = regdate;
         this.readCount = readCount;
@@ -37,6 +41,22 @@ public class Board {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getTitle() {
@@ -55,12 +75,12 @@ public class Board {
         this.content = content;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getName() {
+        return name;
     }
 
-    public void setNickname(String writer) {
-        this.nickname = writer;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getRegdate() {
@@ -79,15 +99,27 @@ public class Board {
         this.readCount = readCount;
     }
 
-    @Override
-    public String toString() {
-        return "Board{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", regdate=" + regdate +
-                ", readCount=" + readCount +
-                '}';
+    public int getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(int groupNo) {
+        this.groupNo = groupNo;
+    }
+
+    public int getGroupSeq() {
+        return groupSeq;
+    }
+
+    public void setGroupSeq(int groupSeq) {
+        this.groupSeq = groupSeq;
+    }
+
+    public int getGroupDepth() {
+        return groupDepth;
+    }
+
+    public void setGroupDepth(int groupDepth) {
+        this.groupDepth = groupDepth;
     }
 }

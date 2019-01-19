@@ -27,7 +27,7 @@
         <p>박재희</p>
     </div>
 
-    <!-- 모달 -->
+    <!-- 모달1 -->
     <div class="container">
         <!-- Button to Open the Modal -->
         <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">
@@ -67,8 +67,43 @@
             </div>
         </div>
 
+        <!--모달2-->
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#loginModal">
+            LOGIN
+        </button>
+
+        <!-- The Modal -->
+        <div class="modal" id="loginModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <h3>JOIN</h3>
+                        <form method="post" action="/board/login">
+                            email : <input type="text" name="email" size="20"><br>
+                            password : <input type="password" name="passwd" size="20"><br>
+                            <input type="submit">
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
-    <button type="button" class="btn btn-warning btn-lg pull-right"><a href="/board/list"> LOGIN </a></button>
     <button type="button" class="btn btn-warning btn-lg pull-right"><a href="/board/list"> WELCOME </a></button>
 </div>
 

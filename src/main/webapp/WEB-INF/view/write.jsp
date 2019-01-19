@@ -33,14 +33,11 @@
 <form action="/board/write" method="post">
 <div class="container">
     <h2>글쓰기</h2>
+    <input type="hidden" name="id" id = "id" value="${sessionScope.logininfo.id}" />
 
         <div class="form-group">
             <label for="writer">Name:</label>
-            <input type="text" class="form-control" id="writer" name="nickname">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
+            <input type="text" class="form-control" id="writer" name="nickname" value="${sessionScope.logininfo.nickname}">
         </div>
 
         <div class="form-group">

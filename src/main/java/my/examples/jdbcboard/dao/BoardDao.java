@@ -12,4 +12,8 @@ public interface BoardDao {
     void deleteBoard(Long id);
     void modifyBoard(Long id, String title, String content);
     void updateReadCount(long id);
+
+    Long getLastInsertId();
+
+    void updateLastInsertId(Long lastInsertId);
 }
